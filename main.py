@@ -5,7 +5,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-  return 'Hello, World!'
+	name = request.args.get('name', default='', type=str)
+	if len(name) > 0:
+		return 'Hello, {}!'.format(name)
+	else:
+		return 'Hello, world!'
 
 @app.route('/exec')
 def exec_script():
@@ -17,4 +21,4 @@ def exec_script():
 		return 'Exec error! {}'.format(e)
 
 if __name__ == '__main__':
-  app.run()
+	app.run()
