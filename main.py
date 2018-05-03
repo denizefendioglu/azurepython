@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-	name = request.args.get('name', default='', type=str)
+	data = request.args.get('data', default='', type=str)
 	if len(name) > 0:
-		return 'Hello, {}!'.format(name)
+		return 'Hello, you supplied {}!'.format(data)
 	else:
 		return 'Hello, world!'
 
