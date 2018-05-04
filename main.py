@@ -3,11 +3,11 @@ import subprocess
 from flask import Flask, request
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def hello_world():
-	data = request.args.get('data', default='', type=str)
-	if len(data) > 0:
-		return 'Hello, you supplied {}!'.format(data)
+	jsonData = request.json
+	if jsonData:
+		return 'Hello, you supplied {} from {}!'.format(jsonData['name'], jsonData['source'])
 	else:
 		return 'Hello, world!'
 
