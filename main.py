@@ -7,9 +7,9 @@ app = Flask(__name__)
 def hello_world():
 	jsonData = request.json
 	if jsonData:
-		return 'Hello, you supplied {} from {}!'.format(jsonData['name'], jsonData['source'])
+		return "{\"message\": \"Hello\", \"data\": [{\"name\": \""+jsonData['name']+"\", \"source\": \""+jsonData['source']+"\"}]}"
 	else:
-		return 'Hello, world!'
+		return "{\"message\": \"Hello, world!\", \"data\":[]}"
 
 @app.route('/exec')
 def exec_script():
